@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-fraunces: 'Fraunces', Georgia, serif;
+    --font-atkinson: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
+    --font-noto-kannada: 'Noto Sans Kannada', 'Tunga', 'Kedage', sans-serif;
+    --font-noto-hindi: 'Noto Sans Devanagari', 'Mangal', 'Utsaah', sans-serif;
+    --font-noto-tamil: 'Noto Sans Tamil', 'Latha', 'Vijaya', sans-serif;
+    --font-noto-malayalam: 'Noto Sans Malayalam', 'Kartika', 'AnjaliOldLipi', sans-serif;
+
+    --bg-paper: #F4EEE1;
+    --bg-paper-surface: #FAF7F0;
+    --bg-paper-card: #FFFFFF;
+    --bg-paper-subtle: #ECE4D0;
+    --color-field-green: #1E3B2A;
+    --color-field-hover: #14271C;
+    --color-field-light: #E8F0EB;
+    --color-straw-gold: #D8B25C;
+    --color-straw-light: #FBF6E9;
+    --color-ink-brown: #2B2523;
+    --color-ink-muted: #5D5450;
+    --color-ink-faint: #8E8580;
+    --color-border: #E0D6C3;
+    --focus-ring: #1E3B2A;
+  }
+
+  /* Dark mode */
+  .dark {
+    --bg-paper: #181917;
+    --bg-paper-surface: #222320;
+    --bg-paper-card: #2B2D29;
+    --bg-paper-subtle: #2F312D;
+    --color-field-green: #3D6B4F;
+    --color-field-hover: #4E8262;
+    --color-field-light: #1E2D23;
+    --color-straw-gold: #D8B25C;
+    --color-straw-light: #332B1A;
+    --color-ink-brown: #F0EDE6;
+    --color-ink-muted: #B8B2A7;
+    --color-ink-faint: #8A857B;
+    --color-border: #3A3D36;
+    --focus-ring: #D8B25C;
+  }
+
+  /* High contrast mode */
+  .high-contrast {
+    --bg-paper: #FFFFFF !important;
+    --bg-paper-surface: #FFFFFF !important;
+    --bg-paper-card: #FFFFFF !important;
+    --bg-paper-subtle: #EEEEEE !important;
+    --color-field-green: #000000 !important;
+    --color-field-hover: #000000 !important;
+    --color-straw-gold: #000000 !important;
+    --color-ink-brown: #000000 !important;
+    --color-ink-muted: #000000 !important;
+    --color-ink-faint: #222222 !important;
+    --color-border: #000000 !important;
+    --focus-ring: #000000 !important;
+  }
+
+  .dark.high-contrast {
+    --bg-paper: #000000 !important;
+    --bg-paper-surface: #000000 !important;
+    --bg-paper-card: #111111 !important;
+    --bg-paper-subtle: #222222 !important;
+    --color-field-green: #FFFFFF !important;
+    --color-field-hover: #FFFFFF !important;
+    --color-straw-gold: #FFFF00 !important;
+    --color-ink-brown: #FFFFFF !important;
+    --color-ink-muted: #FFFFFF !important;
+    --color-ink-faint: #E0E0E0 !important;
+    --color-border: #FFFFFF !important;
+    --focus-ring: #FFFF00 !important;
+  }
+
+  /* Large text mode */
+  .large-text {
+    font-size: 122% !important;
+  }
+
+  html {
+    background-color: var(--bg-paper);
+    color: var(--color-ink-brown);
+    font-size: 17px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-paper);
+    color: var(--color-ink-brown);
+    min-height: 100vh;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print stylesheet */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .card-print {
+    border: 1pt solid #444 !important;
+    break-inside: avoid;
+    box-shadow: none !important;
+    background: #FFFFFF !important;
+  }
+}
+
+/* Custom editorial components */
+.paper-container {
+  background-color: var(--bg-paper);
+}
+
+.straw-accent-bar {
+  background: linear-gradient(90deg, #D8B25C 0%, #E8CD89 100%);
+}
+
+.traffic-ready {
+  background-color: #EAF7EE;
+  border-color: #2E7D32;
+  color: #1B5E20;
+}
+
+.traffic-correction {
+  background-color: #FFF8E1;
+  border-color: #F57F17;
+  color: #E65100;
+}
+
+.traffic-missing {
+  background-color: #FFEBEE;
+  border-color: #C62828;
+  color: #B71C1C;
+}
+
+.dark .traffic-ready {
+  background-color: #1A3022;
+  border-color: #388E3C;
+  color: #A5D6A7;
+}
+
+.dark .traffic-correction {
+  background-color: #382E14;
+  border-color: #FBC02D;
+  color: #FFE082;
+}
+
+.dark .traffic-missing {
+  background-color: #3B1B1E;
+  border-color: #E53935;
+  color: #EF9A9A;
+}
