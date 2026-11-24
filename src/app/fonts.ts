@@ -24,3 +24,7 @@ export const notoSansTamil = {
 export const notoSansMalayalam = {
   variable: 'font-noto-malayalam',
 };
+
+export const notoSansTelugu = {
+  variable: 'font-noto-telugu',
+};

@@ -1,7 +1,7 @@
 import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
 
-export const locales = ['en', 'kn', 'hi', 'ta', 'ml'] as const;
+export const locales = ['en', 'kn', 'hi', 'ta', 'ml', 'te'] as const;
 export type AppLocale = (typeof locales)[number];
 
 export const routing = defineRouting({
@@ -19,4 +19,5 @@ export const localeNames: Record<AppLocale, { native: string; english: string; f
   hi: { native: 'हिन्दी', english: 'Hindi', fontClass: 'font-hindi' },
   ta: { native: 'தமிழ்', english: 'Tamil', fontClass: 'font-tamil' },
   ml: { native: 'മലയാളം', english: 'Malayalam', fontClass: 'font-malayalam' },
+  te: { native: 'తెలుగు', english: 'Telugu', fontClass: 'font-telugu' },
 };

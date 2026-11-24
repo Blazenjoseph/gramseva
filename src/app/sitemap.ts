@@ -18,10 +18,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
 
-    for (const scheme of SCHEMES_DATA) {
+    const publishedSchemes = SCHEMES_DATA.filter((s) => s.published !== false);
+    for (const scheme of publishedSchemes) {
+      const parsedDate = scheme.lastVerifiedOn ? new Date(scheme.lastVerifiedOn) : new Date('2026-11-23');
+      const validDate = isNaN(parsedDate.getTime()) ? new Date('2026-11-23') : parsedDate;
+
       sitemapEntries.push({
         url: `${baseUrl}/${locale}/schemes/${scheme.slug}`,
-        lastModified: new Date(scheme.lastVerifiedOn),
+        lastModified: validDate,
         changeFrequency: 'monthly',
         priority: 0.85,
       });

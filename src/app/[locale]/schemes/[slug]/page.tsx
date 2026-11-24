@@ -13,11 +13,13 @@ import {
   FileText,
   Building,
   Phone,
-  Globe,
   ExternalLink,
-  ShieldCheck,
   FileCheck,
   ChevronRight,
+  Globe2,
+  Landmark,
+  ShieldAlert,
+  AlertCircle,
 } from 'lucide-react';
 
 export async function generateStaticParams() {
@@ -36,7 +38,7 @@ export async function generateMetadata({
   if (!scheme) return { title: 'Scheme Not Found' };
 
   return {
-    title: `${scheme.title}`,
+    title: `${scheme.title} - Scheme Access Kit`,
     description: scheme.whatItGives,
   };
 }
@@ -54,24 +56,59 @@ export default async function SchemeDetailPage({
   const scheme = getSchemeBySlug(slug, currentLocale);
   if (!scheme) notFound();
 
-  const fullTextToRead = `${scheme.title}. ${scheme.whatItGives}. Who it is for: ${scheme.whoItIsFor}. Crucial watch out: ${scheme.watchFor}`;
+  const fullTextToRead = `${scheme.title}. ${scheme.whatItGives}. Eligibility: ${scheme.whoItIsFor}. Important notes: ${scheme.watchFor}`;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
-      {/* Back Navigation Link */}
-      <Link
-        href="/schemes"
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-field-800 dark:text-straw-400 hover:underline"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        <span>Back to All Schemes</span>
-      </Link>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-6">
+      {/* Visible Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-ink-muted dark:text-stone-400">
+        <Link href="/" className="hover:underline hover:text-field-800 dark:hover:text-straw-400">
+          {tCommon('breadcrumbs.home')}
+        </Link>
+        <ChevronRight className="w-3.5 h-3.5" />
+        <Link href="/schemes" className="hover:underline hover:text-field-800 dark:hover:text-straw-400">
+          {tCommon('breadcrumbs.schemes')}
+        </Link>
+        <ChevronRight className="w-3.5 h-3.5" />
+        <span className="font-semibold text-ink dark:text-paper-100 truncate max-w-[260px] sm:max-w-none" aria-current="page">
+          {scheme.title}
+        </span>
+      </nav>
+
+      {/* Mandatory Public Service Disclaimer Notice */}
+      <div className="p-4 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 flex items-start gap-3 shadow-sm">
+        <ShieldAlert className="w-5 h-5 text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
+        <div className="text-xs sm:text-sm text-amber-900 dark:text-amber-200 leading-relaxed font-medium">
+          <strong className="block font-bold mb-0.5">Official Notice:</strong>
+          {tCommon('eligibilityDisclaimer')}
+        </div>
+      </div>
+
+      {/* State Scheme Warning Notice if applicable */}
+      {scheme.state !== 'all-india' && scheme.state !== 'Central' && (
+        <div className="p-3 rounded-xl border border-amber-300 dark:border-amber-800 bg-amber-50/90 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200 text-xs sm:text-sm font-semibold flex items-center gap-2.5">
+          <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
+          <span>
+            {tCommon('stateSchemeNotice', { state: scheme.state })}
+          </span>
+        </div>
+      )}
 
       {/* Main Header Card */}
       <div className="p-6 sm:p-10 rounded-2xl border border-paper-300 dark:border-stone-800 bg-paper-50 dark:bg-stone-900 shadow-card space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider bg-straw-100 text-straw-700 dark:bg-stone-800 dark:text-straw-400 border border-straw-300 dark:border-stone-700">
-            {scheme.state === 'karnataka' ? 'Karnataka State Scheme' : 'Central Government Scheme'}
+          <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider bg-straw-100 text-straw-700 dark:bg-stone-800 dark:text-straw-400 border border-straw-300 dark:border-stone-700">
+            {scheme.state === 'all-india' || scheme.state === 'Central' ? (
+              <>
+                <Globe2 className="w-3.5 h-3.5 text-field-800 dark:text-straw-400" />
+                <span>Nationwide Scheme</span>
+              </>
+            ) : (
+              <>
+                <Landmark className="w-3.5 h-3.5 text-amber-700 dark:text-amber-400" />
+                <span>State Scheme: {scheme.state}</span>
+              </>
+            )}
           </span>
 
           <SpeechButton text={fullTextToRead} locale={currentLocale} />
@@ -97,9 +134,9 @@ export default async function SchemeDetailPage({
 
       {/* Core Details Grid */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        {/* Left Column: What It Gives, Who It Is For, Crucial Watch Out */}
+        {/* Left Column: Benefit details, Important notes, Eligibility, Documents required */}
         <div className="md:col-span-8 space-y-6">
-          {/* What it gives */}
+          {/* Benefit details */}
           <section className="p-6 sm:p-8 rounded-2xl border border-paper-300 dark:border-stone-800 bg-paper-50 dark:bg-stone-900 shadow-sm space-y-3">
             <h2 className="font-serif font-bold text-xl text-field-900 dark:text-straw-400 flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-field-700 dark:text-straw-400" />
@@ -110,7 +147,7 @@ export default async function SchemeDetailPage({
             </p>
           </section>
 
-          {/* Crucial Watch Out Warning */}
+          {/* Important notes */}
           <section className="p-6 sm:p-8 rounded-2xl border border-amber-300 dark:border-amber-700 bg-amber-50/90 dark:bg-amber-950/50 shadow-sm space-y-3">
             <h2 className="font-serif font-bold text-xl text-amber-900 dark:text-amber-200 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-amber-700 dark:text-amber-400" />
@@ -121,7 +158,7 @@ export default async function SchemeDetailPage({
             </p>
           </section>
 
-          {/* Who it is for */}
+          {/* Eligibility */}
           <section className="p-6 sm:p-8 rounded-2xl border border-paper-300 dark:border-stone-800 bg-paper-50 dark:bg-stone-900 shadow-sm space-y-4">
             <h2 className="font-serif font-bold text-xl text-ink dark:text-paper-100">
               {t('whoItIsFor')}
@@ -133,18 +170,18 @@ export default async function SchemeDetailPage({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-paper-200 dark:border-stone-800 text-xs text-ink-muted dark:text-stone-300">
               <div className="p-3 rounded-lg bg-paper-100 dark:bg-stone-950">
                 <span className="font-bold text-field-800 dark:text-straw-400 block mb-1">
-                  Land Size Parameter
+                  Holding Scope
                 </span>
                 <span>
                   {scheme.landSizeMinAcres !== undefined
                     ? `Min: ${scheme.landSizeMinAcres} acre`
-                    : 'No minimum'}
+                    : 'All operational categories'}
                   {scheme.landSizeMaxAcres ? ` · Max: ${scheme.landSizeMaxAcres} acres` : ''}
                 </span>
               </div>
               <div className="p-3 rounded-lg bg-paper-100 dark:bg-stone-950">
                 <span className="font-bold text-field-800 dark:text-straw-400 block mb-1">
-                  Eligible Cropping Patterns
+                  Eligible Agricultural Scope
                 </span>
                 <span className="capitalize">
                   {scheme.eligibleCrops?.join(', ') || 'All crops'}
@@ -153,7 +190,7 @@ export default async function SchemeDetailPage({
             </div>
           </section>
 
-          {/* Documents Needed */}
+          {/* Documents required */}
           <section className="p-6 sm:p-8 rounded-2xl border border-paper-300 dark:border-stone-800 bg-paper-50 dark:bg-stone-900 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="font-serif font-bold text-xl text-ink dark:text-paper-100 flex items-center gap-2">
@@ -185,9 +222,9 @@ export default async function SchemeDetailPage({
           </section>
         </div>
 
-        {/* Right Column: Where to Apply, Official Source & Checklist CTA */}
+        {/* Right Column: How to apply, Source & Checklist CTA */}
         <div className="md:col-span-4 space-y-6">
-          {/* Where to apply card */}
+          {/* How to apply */}
           <div className="p-6 rounded-2xl border border-paper-300 dark:border-stone-800 bg-paper-50 dark:bg-stone-900 shadow-sm space-y-4">
             <h3 className="font-serif font-bold text-lg text-ink dark:text-paper-100 flex items-center gap-2">
               <Building className="w-5 h-5 text-field-800 dark:text-straw-400" />
@@ -238,10 +275,10 @@ export default async function SchemeDetailPage({
           <div className="p-6 rounded-2xl border border-field-700 bg-field-800 dark:bg-field-950 text-paper-50 shadow-md space-y-3">
             <FileCheck className="w-8 h-8 text-straw-400" />
             <h3 className="font-serif font-bold text-lg text-paper-50">
-              Check Your Paperwork
+              Check Your Documents
             </h3>
             <p className="text-xs text-paper-200 leading-relaxed">
-              Use our private, browser-only traffic light tool to verify your Aadhaar name spelling, RTC hissa, and bank seeding before visiting the office.
+              Use our private, browser-only readiness tool to check land records, Aadhaar name matching, and NPCI bank seeding before applying.
             </p>
             <div className="pt-2">
               <Link

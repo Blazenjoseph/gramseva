@@ -3,36 +3,42 @@ import { NewsItem, Locale } from '@/types';
 export const NEWS_ITEMS_DATA: NewsItem[] = [
   {
     id: 'news-1',
-    title: '19th Instalment of PM-KISAN Credited via DBT: Land Seeding Checks Underway',
-    summary: 'The central government has released the latest ₹2,000 instalment. Beneficiaries whose status shows "FTO Pending" or "Land Seeding: No" must complete mobile eKYC or submit RTC copy at their taluk RSK immediately.',
+    title: 'PM-KISAN 24th instalment released on 30 October 2026, about 9.34 crore farmers, over ₹18,690 crore transferred',
+    summary: 'The central government has released the 24th instalment on 30 October 2026, crediting ₹2,000 directly via DBT to about 9.34 crore eligible farmers, with over ₹18,690 crore transferred. (to be checked against PIB release)',
     category: 'payment-release',
     schemeSlug: 'pm-kisan',
-    publishedAt: '2026-11-10',
-    lastVerifiedOn: '2026-11-15',
+    state: 'All India',
+    publishedAt: '2026-10-30',
+    lastVerifiedOn: '2026-11-23',
     sourceUrl: 'https://pmkisan.gov.in',
-    verifiedBy: 'Group 5 Research Desk'
+    verifiedBy: 'National Agriculture Welfare Desk',
+    verificationNote: 'to be checked against PIB release',
   },
   {
     id: 'news-2',
-    title: 'Karnataka Raitha Siri 2026-27 Millet Incentive: Bele Samikshe Mandatory',
-    summary: 'Department of Agriculture issues circular re-affirming that ragi and minor millet incentives of ₹10,000/ha will be processed strictly from geo-tagged records in the Karnataka Bele Samikshe app. Farmers are advised to check crop entries.',
+    title: 'PMFBY Kharif 2026 enrolment progress reported by PIB on 29 August 2026',
+    summary: 'PIB reported national enrolment progress for Kharif 2026 seasonal coverage. Detailed financial figures to be entered only after checking the official PIB release.',
     category: 'verification',
-    schemeSlug: 'raitha-siri',
-    publishedAt: '2026-11-05',
-    lastVerifiedOn: '2026-11-15',
-    sourceUrl: 'https://raitamitra.karnataka.gov.in',
-    verifiedBy: 'Group 5 Agriculture Policy Desk'
+    schemeSlug: 'pm-fasal-bima-yojana',
+    state: 'All India',
+    publishedAt: '2026-08-29',
+    lastVerifiedOn: '2026-11-23',
+    sourceUrl: 'https://pib.gov.in',
+    verifiedBy: 'PIB Agriculture Desk',
+    verificationNote: 'Enter figures only after checking the PIB page.',
   },
   {
     id: 'news-3',
     title: 'Krishi Bhagya Farm Pond Applications Open for Rainfed Taluks',
-    summary: 'Applications are now being received across 100+ dryland taluks for farm pond construction and polythene lining subsidies up to 90%. Priority given to marginal farmers with 0.5 to 2.5 acres.',
+    summary: 'Applications are now being received across 100+ dryland taluks for farm pond construction and polythene lining subsidies up to 90% [amounts to be verified]. Priority given to marginal farmers.',
     category: 'deadline',
     schemeSlug: 'krishi-bhagya',
+    state: 'Karnataka',
     publishedAt: '2026-10-28',
-    lastVerifiedOn: '2026-11-14',
+    lastVerifiedOn: '2026-11-23',
     sourceUrl: 'https://raitamitra.karnataka.gov.in',
-    verifiedBy: 'Group 5 Field Studies Unit'
+    verifiedBy: 'Group 5 Field Studies Unit',
+    verificationNote: 'Amounts to be verified against department budget notification.',
   },
   {
     id: 'news-4',
@@ -40,78 +46,91 @@ export const NEWS_ITEMS_DATA: NewsItem[] = [
     summary: 'Revenue and Agriculture Departments announce zero-fee verification camps across hoblis to resolve spelling discrepancies between Bhoomi Pahani and Aadhaar cards.',
     category: 'portal-update',
     schemeSlug: 'fruits-farmer-id',
+    state: 'Karnataka',
     publishedAt: '2026-10-15',
-    lastVerifiedOn: '2026-11-12',
+    lastVerifiedOn: '2026-11-23',
     sourceUrl: 'https://fruits.karnataka.gov.in',
-    verifiedBy: 'Group 5 Data Team'
-  }
+    verifiedBy: 'Group 5 Data Team',
+  },
 ];
 
 export const NEWS_TRANSLATIONS: Record<string, Record<Locale, { title: string; summary: string }>> = {
   'news-1': {
     en: {
-      title: '19th Instalment of PM-KISAN Credited via DBT: Land Seeding Checks Underway',
-      summary: 'Central government releases latest instalment. Beneficiaries with Land Seeding: No must update RTC copy at RSK.',
+      title: 'PM-KISAN 24th instalment released on 30 October 2026, about 9.34 crore farmers, over ₹18,690 crore transferred',
+      summary: 'Central government released the 24th instalment on 30 October 2026 to ~9.34 crore farmers (over ₹18,690 crore). (to be checked against PIB release)',
     },
     kn: {
-      title: 'ಪಿಎಂ-ಕಿಸಾನ್ ೧೯ ನೇ ಕಂತಿನ ಹಣ ಜಮೆ: ಪಹಣಿ ಸೀಡಿಂಗ್ ಕಡ್ಡಾಯ',
-      summary: 'ಕೇಂದ್ರ ಸರ್ಕಾರದಿಂದ ರೈತರ ಖಾತೆಗೆ ₹೨,೦೦೦ ಜಮೆ. ಖಾತೆಗೆ ಹಣ ಬರದವರು ರೈತ ಸಂಪರ್ಕ ಕೇಂದ್ರದಲ್ಲಿ ಪಹಣಿ ಹಾಗೂ ಇ-ಕೆವೈಸಿ ಪರಿಶೀಲಿಸಿ.',
+      title: 'ಪಿಎಂ-ಕಿಸಾನ್ ೨೪ ನೇ ಕಂತು ಬಿಡುಗಡೆ (೩೦ ಅಕ್ಟೋಬರ್ ೨೦೨೬): ೯.೩೪ ಕೋಟಿ ರೈತರಿಗೆ ₹೧೮,೬೯೦ ಕೋಟಿಗೂ ಹೆಚ್ಚು ಜಮೆ',
+      summary: 'ಕೇಂದ್ರ ಸರ್ಕಾರದಿಂದ ೨೪ ನೇ ಕಂತು ಜಮೆ. (ಪಿಐಬಿ ಪ್ರಕಟಣೆಯೊಂದಿಗೆ ಪರಿಶೀಲಿಸಬೇಕಾಗಿದೆ).',
     },
     hi: {
-      title: 'पीएम-किसान की 19वीं किस्त जारी: भूमि सीडिंग जांच जारी',
-      summary: '₹2,000 की नई किस्त जारी। यदि पैसा नहीं आया तो तुरंत आरटीसी और ई-केवाईसी की स्थिति जांचें।',
+      title: 'पीएम-किसान 24वीं किस्त जारी (30 अक्टूबर 2026): 9.34 करोड़ किसानों को ₹18,690 करोड़ से अधिक हस्तांतरित',
+      summary: 'केंद्रीय सरकार द्वारा 24वीं किस्त जारी। (पीआईबी विज्ञप्ति से मिलान किया जाना शेष है)।',
     },
     ta: {
-      title: 'பிஎம்-கிசான் 19வது தவணை வரவு: நில ஆவண சரிபார்ப்பு',
-      summary: 'விவசாயிகளுக்கு ரூ.2,000 வரவு வைக்கப்பட்டுள்ளது. வராதவர்கள் உடனடியாக நில ஆவண நிலையை சரிபார்க்கவும்.',
+      title: 'பிஎம்-கிசான் 24வது தவணை வெளியீடு: 9.34 கோடி விவசாயிகளுக்கு ரூ.18,690 கோடி வரவு',
+      summary: '24வது தவணை அக்டோபர் 30, 2026 அன்று விடுவிக்கப்பட்டது. (PIB செய்திக் குறிப்புடன் சரிபார்க்கப்பட வேண்டும்).',
     },
     ml: {
-      title: 'പിഎം-കിസാൻ 19-ാം ഗഡു വിതരണം ആരംഭിച്ചു',
-      summary: '₹2,000 കർഷകരുടെ അക്കൗണ്ടിൽ എത്തിത്തുടങ്ങി. തുക ലഭിക്കാത്തവർ ഇ-കെവൈസി പരിശോധിക്കുക.',
+      title: 'പിഎം-കിസാൻ 24-ാം ഗഡു വിതരണം ആരംഭിച്ചു: 9.34 കോടി കർഷകർക്ക് ₹18,690 കോടി',
+      summary: '2026 ഒക്ടോബർ 30-ന് 24-ാം ഗഡു വിതരണം ചെയ്തു. (പിഐബി റിപ്പോർട്ട് അനുസരിച്ച് സ്ഥിരീകരിക്കേണ്ടതുണ്ട്).',
+    },
+    te: {
+      title: 'పీఎం-కిసాన్ 24వ విడత నిధుల జమ (30 అక్టోబర్ 2026): 9.34 కోట్ల మంది రైతులకు ₹18,690 కోట్లకు పైగా బదిలీ',
+      summary: 'రైతుల ఖాతాల్లో 24వ విడత నిధులు జమ చేయబడ్డాయి. (పీఐబీ ప్రకటనతో సరిపోల్చి ధృవీకరించుకోవాలి).',
     },
   },
   'news-2': {
     en: {
-      title: 'Karnataka Raitha Siri Millet Incentive: Bele Samikshe Verification Mandatory',
-      summary: 'Department of Agriculture confirms ₹10,000/ha millet assistance requires verified entries in Bele Samikshe app.',
+      title: 'PMFBY Kharif 2026 enrolment progress reported by PIB on 29 August 2026',
+      summary: 'PIB reported Kharif 2026 crop insurance progress on 29 August 2026. Enter figures only after checking the PIB page.',
     },
     kn: {
-      title: 'ರೈತ ಸಿರಿ ರಾಗಿ ಪ್ರೋತ್ಸಾಹಧನ: ಬೆಳೆ ಸಮೀಕ್ಷೆ ದಾಖಲು ಕಡ್ಡಾಯ',
-      summary: 'ಹೆಕ್ಟೇರ್‌ಗೆ ₹೧೦,೦೦೦ ರಾಗಿ ಸಹಾಯಧನ ಪಡೆಯಲು ಬೆಳೆ ಸಮೀಕ್ಷೆ (ಸರ್ವೆ) ಆ್ಯಪ್‌ನಲ್ಲಿ ನಿಮ್ಮ ರಾಗಿ ಬೆಳೆ ವಿವರ ದಾಖಲಾಗಿರಬೇಕು.',
+      title: 'ಪಿಎಂಎಫ್‌ಬಿವೈ ಮುಂಗಾರು ೨೦೨೬ ನೋಂದಣಿ ಪ್ರಗತಿ (ಪಿಐಬಿ ವರದಿ - ೨೯ ಆಗಸ್ಟ್ ೨೦೨೬)',
+      summary: 'ಪಿಐಬಿ ಪುಟವನ್ನು ಪರಿಶೀಲಿಸಿದ ನಂತರವೇ ನಿಖರ ಅಂಕಿಅಂಶಗಳನ್ನು ನಮೂದಿಸಬೇಕು.',
     },
     hi: {
-      title: 'कर्नाटक रैता सिरी मोटा अनाज प्रोत्साहन: बेले समीक्षे अनिवार्य',
-      summary: 'रागी और मोटे अनाज पर ₹10,000/हेक्टेयर की सहायता के लिए सरकारी फसल सर्वेक्षण में प्रविष्टि आवश्यक है।',
+      title: 'पीएमएफबीवाई खरीफ 2026 नामांकन प्रगति (पीआईबी रिपोर्ट - 29 अगस्त 2026)',
+      summary: 'पीआईबी पृष्ठ की पुष्टि के बाद ही आधिकारिक आंकड़े दर्ज किए जाने हैं।',
     },
     ta: {
-      title: 'ரைதா சிரி கேழ்வரகு ஊக்கத்தொகை: பயிர் கணக்கெடுப்பு கட்டாயம்',
-      summary: 'கேழ்வரகு விவசாயிகளுக்கான உதவித்தொகை பெற பயிர் சர்வேயில் பதிவு செய்திருப்பது அவசியம்.',
+      title: 'PMFBY காரீஃப் 2026 பதிவு முன்னேற்றம் (PIB அறிக்கை - 29 ஆகஸ்ட் 2026)',
+      summary: 'PIB பக்கத்தை சரிபார்த்த பின்னரே விவரங்களை உள்ளிடவும்.',
     },
     ml: {
-      title: 'റൈത സിരി റാഗി ആനുകൂല്യം: ക്രോപ്പ് സർവേ നിർബന്ധം',
-      summary: 'റാഗി കർഷകർക്കുള്ള ധനസഹായം ലഭിക്കാൻ ക്രോപ്പ് സർവേയിൽ വിളവിവരങ്ങൾ രേഖപ്പെടുത്തണം.',
+      title: 'പിഎംഎഫ്ബിവൈ ഖാരിഫ് 2026 എൻറോൾമെന്റ് പുരോഗതി (പിഐബി റിപ്പോർട്ട്)',
+      summary: 'പിഐബി പേജ് പരിശോധിച്ച ശേഷം മാത്രം വിവരങ്ങൾ രേഖപ്പെടുത്തുക.',
+    },
+    te: {
+      title: 'పీఎంఎఫ్‌బీవై ఖరీఫ్ 2026 నమోదు పురోగతి (పీఐబీ నివేదిక - 29 ఆగస్టు 2026)',
+      summary: 'పీఐబీ పేజీని పరిశీలించిన తర్వాతే అధికారిక గణాంకాలను నమోదు చేయాలి.',
     },
   },
   'news-3': {
     en: {
       title: 'Krishi Bhagya Farm Pond Applications Open for Rainfed Taluks',
-      summary: 'Applications open for farm ponds and lining subsidies up to 90% for small dryland farmers.',
+      summary: 'Applications open for farm ponds and lining subsidies for small dryland farmers [amounts to be verified].',
     },
     kn: {
       title: 'ಮಳೆಯಾಶ್ರಿತ ತಾಲೂಕುಗಳಲ್ಲಿ ಕೃಷಿ ಹೊಂಡ ನಿರ್ಮಾಣಕ್ಕೆ ಅರ್ಜಿ ಆಹ್ವಾನ',
-      summary: 'ಕೃಷಿ ಭಾಗ್ಯ ಯೋಜನೆಯಡಿ ಶೇಕಡಾ ೮೦-೯೦ ಸಬ್ಸಿಡಿಯೊಂದಿಗೆ ಕೃಷಿ ಹೊಂಡ ಹಾಗೂ ಪಾಲಿಥಿನ್ ಹೊದಿಕೆಗೆ ಅರ್ಜಿ ಆರಂಭವಾಗಿದೆ.',
+      summary: 'ಕೃಷಿ ಭಾಗ್ಯ ಯೋಜನೆಯಡಿ ಕೃಷಿ ಹೊಂಡ ಹಾಗೂ ಪಾಲಿಥಿನ್ ಹೊದಿಕೆಗೆ ಅರ್ಜಿ ಆರಂಭವಾಗಿದೆ [ಸಹಾಯಧನ ಪರಿಶೀಲನೆ ಬಾಕಿ].',
     },
     hi: {
       title: 'वर्षा आधारित क्षेत्रों में कृषि भाग्य खेत तालाब हेतु आवेदन शुरू',
-      summary: 'छोटे किसानों के लिए 90% तक की सब्सिडी पर खेत तालाब और लाइनिंग हेतु आवेदन आमंत्रित।',
+      summary: 'छोटे किसानों के लिए खेत तालाब और लाइनिंग हेतु आवेदन आमंत्रित [राशि सत्यापन लंबित]।',
     },
     ta: {
       title: 'மானாவாரி பகுதிகளில் கிருஷி பாக்யா பண்ணைக் குட்டை விண்ணப்பங்கள் தொடக்கம்',
-      summary: '90% வரை மானியத்துடன் பண்ணைக் குட்டை அமைக்க விவசாயிகளிடமிருந்து விண்ணப்பங்கள் வரவேற்கப்படுகின்றன.',
+      summary: 'மானாவாரி விவசாயிகளுக்கு பண்ணைக் குட்டை அமைக்க விண்ணப்பங்கள் வரவேற்கப்படுகின்றன [தொகை சரிபார்ப்பு].',
     },
     ml: {
       title: 'കൃഷി ഭാഗ്യ ഫാം കുളങ്ങൾ: അപേക്ഷകൾ ക്ഷണിക്കുന്നു',
-      summary: 'വരൾച്ചാ ബാധിത പ്രദേശങ്ങളിൽ 90% വരെ സബ്‌സിഡിയോടെ ഫാം കുളങ്ങൾ നിർമ്മിക്കാൻ അപേക്ഷിക്കാം.',
+      summary: 'വരൾച്ചാ ബാധിത പ്രദേശങ്ങളിൽ ഫാം കുളങ്ങൾ നിർമ്മിക്കാൻ അപേക്ഷിക്കാം [തുക സ്ഥിരീകരിക്കേണ്ടതുണ്ട്].',
+    },
+    te: {
+      title: 'వర్షాధార ప్రాంతాల్లో కృషి భాగ్య వ్యవసాయ కుంటలకు దరఖాస్తులు ప్రారంభం',
+      summary: 'చిన్న రైతులకు వ్యవసాయ కుంటలు మరియు పాలిథిన్ లైనింగ్ కొరకు దరఖాస్తులు [మొత్తాలు ధృవీకరించాలి].',
     },
   },
   'news-4': {
@@ -134,6 +153,10 @@ export const NEWS_TRANSLATIONS: Record<string, Record<Locale, { title: string; s
     ml: {
       title: 'ഫ്രൂട്ട്സ് ഐഡി പേര് തിരുത്തൽ പ്രത്യേക ക്യാമ്പ്',
       summary: 'ഭൂരേഖയിലെയും ആധാറിലെയും അക്ഷരത്തെറ്റുകൾ സൗജന്യമായി തിരുത്താൻ സൗകര്യം.',
+    },
+    te: {
+      title: 'రైతు గుర్తింపు కార్డు (FRUITS) పేరు సవరణల కొరకు ప్రత్యేక శిబిరాలు',
+      summary: 'భూమి రికార్డు మరియు ఆధార్ కార్డులో పేర్ల తేడాలు ఉన్న రైతులకు ఉచిత సవరణ కేంద్రాలు ఏర్పాటు.',
     },
   },
 };

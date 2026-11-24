@@ -58,8 +58,8 @@ export function Header() {
               <span className="font-serif font-bold text-xl tracking-tight text-field-900 dark:text-paper-50 block leading-tight">
                 Scheme Access Kit
               </span>
-              <span className="text-[11px] text-ink-muted dark:text-stone-400 block -mt-0.5">
-                ಕೃಷಿ ಯೋಜನೆಗಳ ಕೈಪಿಡಿ · Rural Outreach
+              <span className="text-[11px] text-ink-muted dark:text-stone-400 block -mt-0.5 truncate max-w-[240px] sm:max-w-none">
+                {t('appTagline')}
               </span>
             </div>
           </Link>

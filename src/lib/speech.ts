@@ -6,6 +6,7 @@ const LOCALE_SPEECH_MAP: Record<Locale, string> = {
   hi: 'hi-IN',
   ta: 'ta-IN',
   ml: 'ml-IN',
+  te: 'te-IN',
 };
 
 export class SpeechService {

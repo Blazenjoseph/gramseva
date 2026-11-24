@@ -4,14 +4,20 @@ const OFFLINE_URLS = [
   '/',
   '/en',
   '/kn',
+  '/te',
+  '/hi',
   '/en/checklist',
   '/kn/checklist',
+  '/te/checklist',
   '/en/schemes',
   '/kn/schemes',
+  '/te/schemes',
   '/en/finder',
   '/kn/finder',
+  '/te/finder',
   '/en/glossary',
   '/kn/glossary',
+  '/te/glossary',
 ];
 
 self.addEventListener('install', (event) => {

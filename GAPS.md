@@ -2,36 +2,36 @@
 
 **Project:** Scheme Access Kit  
 **Team:** Group 5 · Design Thinking · JAIN (Deemed-to-be University)  
-**Date:** November 2026
+**Date:** November 2026 (All-India Scope & Telugu Integration)
 
 ---
 
 ## 1. Known Gaps in Current Implementation
 
-### 1.1 Live Bhoomi & FRUITS API Integration
-- **Current State:** The kit evaluates eligibility via interactive self-assessment and guided checks. Farmers manually check if their RTC is in their name or joint.
-- **Limitation:** Karnataka state Bhoomi RTC and FRUITS APIs are restricted to government-authorized IP gateways (Grama One, Karnataka One). Direct public REST integration requires an official MOU with the Centre for e-Governance (CeG), Karnataka.
-- **Next Step:** Partner with the Karnataka Department of Agriculture during the next academic research phase to obtain read-only sandbox API credentials for real-time survey number and hissa lookups.
+### 1.1 State-Specific Scheme Verification Outside Karnataka Baseline
+- **Current State:** Nationwide central schemes (PM-KISAN, PMFBY, Kisan Credit Card, Soil Health Card) and Karnataka state schemes (Raitha Siri, Krishi Bhagya, FRUITS FID) are verified against primary government gazettes and official portals. For other states (e.g., Andhra Pradesh, Telangana, Maharashtra, Uttar Pradesh), state-specific entries are retained as transparent placeholders marked: *"State scheme: details to be verified for [state]"*.
+- **Limitation:** In accordance with content safety rules, no state scheme amounts, rules, or budget allocations have been fabricated.
+- **Next Step:** Engage agricultural extension departments across neighboring states (Andhra Pradesh, Telangana, Tamil Nadu, Kerala, Maharashtra) to catalog verified state-level welfare programs with confirmed government order numbers.
 
-### 1.2 Native Indic Voice Synthesis on Low-End Devices
-- **Current State:** The read-aloud feature uses the standard browser `window.speechSynthesis` (Web Speech API) with targeted language tags (`kn-IN`, `hi-IN`, `ta-IN`, `ml-IN`).
-- **Limitation:** Certain budget Android phones running non-standard OEM builds (without Google Play Services TTS) may lack the regional Kannada or Malayalam speech packs, causing the browser to fall back silently.
-- **Next Step:** Implement server-side AI voice audio generation (such as open-source Indic-TTS from AI4Bharat / IIT Madras) cached on edge CDN.
+### 1.2 Telugu and Indic Translation Field Review
+- **Current State:** Full Telugu (`te`) translation has been integrated alongside Kannada (`kn`), Hindi (`hi`), Tamil (`ta`), and Malayalam (`ml`). All Indic translations carry a visible badge: *"Translation pending field review"*.
+- **Limitation:** Initial translations were verified against published agricultural glossaries but require validation by native agricultural extension officers and local farmers to refine dialect-specific terminology (e.g., revenue terms like *Pahani*, *Khatauni*, *1B Adangal*, *Patta*, *Rythu Bharosa*).
+- **Next Step:** Coordinate field review sessions with Telugu-speaking agricultural officers in Andhra Pradesh and Telangana to certify scheme nomenclature.
 
-### 1.3 Tenant & Sharecropper Legal Ambiguities
-- **Current State:** The scheme finder accurately alerts tenant farmers that schemes like PM-KISAN require documented ownership in the revenue RTC.
-- **Limitation:** Karnataka’s Land Reforms Act historically limits formal recorded tenancy agreements for crop loans in informal arrangements.
-- **Next Step:** Expand legal aid templates and guidance on Joint Liability Groups (JLGs) formed via NABARD that allow tenant cultivators to access credit subsidies without land titles.
+### 1.3 Live Revenue & Farmer Registry API Integrations
+- **Current State:** The kit evaluates eligibility via interactive guided questionnaire and client-side logic.
+- **Limitation:** Direct REST API access to state farmer registries (e.g., Karnataka FRUITS, Andhra Pradesh Karshak, Central PM-KISAN database) requires authorized state IP gateways and formal Memorandums of Understanding (MoU).
+- **Next Step:** Partner with state e-Governance centers during Phase 2 to explore read-only sandbox API access for automated, zero-storage survey number validation.
 
-### 1.4 Native PDF Export vs Browser Print
-- **Current State:** The document checklist uses the browser's native `@media print` engine, allowing users to "Print" or "Save as PDF" cleanly on desktop and mobile.
-- **Limitation:** On older mobile browsers, some users may find the native browser print dialog unfamiliar.
-- **Next Step:** Bundle a zero-dependency client-side PDF generator (like PDF-Lib) that downloads a pre-formatted single-page Kannada/English PDF file with a single tap.
+### 1.4 Native Indic Voice Synthesis on Low-End Devices
+- **Current State:** The read-aloud feature uses standard browser `window.speechSynthesis` (Web Speech API) with targeted locale tags (`te-IN`, `kn-IN`, `hi-IN`, `ta-IN`, `ml-IN`, `en-IN`).
+- **Limitation:** Budget Android smartphones without Google Play Services TTS may lack regional Indic language voice packs, resulting in silent fallbacks.
+- **Next Step:** Integrate edge-cached neural voice synthesis (e.g., AI4Bharat Indic-TTS / Bhashini) for universal playback on all mobile devices.
 
 ---
 
 ## 2. Immediate Next Steps (Phase 2 Roadmap)
 
-1. **Taluk Pilot Field Study:** Conduct usability testing sessions with 30 ragi farmers in Magadi taluk (Ramanagara district) in coordination with the local Raitha Samparka Kendra.
-2. **Community Translation Review:** Have rural agricultural extension officers review and sign off on the 4 Indic language translations to remove the "pending review" tag.
-3. **SMS / IVR Bridge:** Introduce a missed-call or basic IVR audio service where farmers with feature phones can listen to the top 3 schemes for their district.
+1. **State Extension Outreach:** Conduct validation sprints with agricultural universities and Krishi Vigyan Kendras (KVKs) to verify state-level schemes across southern and northern agricultural zones.
+2. **Community Review Sign-Off:** Complete field validation for Telugu, Kannada, Hindi, Tamil, and Malayalam translation files to transition badge status from "pending review" to "field-verified".
+3. **Offline Field Kit Deployment:** Distribute the service worker-cached PWA to village Common Service Centres (CSCs) and Grama One / Rythu Bharosa Kendras for low-bandwidth village access.

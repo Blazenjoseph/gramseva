@@ -1,17 +1,90 @@
-export type Locale = 'en' | 'kn' | 'hi' | 'ta' | 'ml';
+export type Locale = 'en' | 'kn' | 'hi' | 'ta' | 'ml' | 'te';
+
+export type StateOrUT =
+  | 'All India'
+  | 'Andhra Pradesh'
+  | 'Arunachal Pradesh'
+  | 'Assam'
+  | 'Bihar'
+  | 'Chhattisgarh'
+  | 'Goa'
+  | 'Gujarat'
+  | 'Haryana'
+  | 'Himachal Pradesh'
+  | 'Jharkhand'
+  | 'Karnataka'
+  | 'Kerala'
+  | 'Madhya Pradesh'
+  | 'Maharashtra'
+  | 'Manipur'
+  | 'Meghalaya'
+  | 'Mizoram'
+  | 'Nagaland'
+  | 'Odisha'
+  | 'Punjab'
+  | 'Rajasthan'
+  | 'Sikkim'
+  | 'Tamil Nadu'
+  | 'Telangana'
+  | 'Tripura'
+  | 'Uttar Pradesh'
+  | 'Uttarakhand'
+  | 'West Bengal'
+  | 'Andaman and Nicobar Islands'
+  | 'Chandigarh'
+  | 'Dadra and Nagar Haveli and Daman and Diu'
+  | 'Delhi'
+  | 'Jammu and Kashmir'
+  | 'Ladakh'
+  | 'Lakshadweep'
+  | 'Puducherry';
+
+export type LandHoldingCategory =
+  | 'marginal' // Up to 1 hectare (~2.5 acres)
+  | 'small' // 1 to 2 hectares (~2.5 to 5 acres)
+  | 'semi-medium' // 2 to 4 hectares (~5 to 10 acres)
+  | 'medium' // 4 to 10 hectares (~10 to 25 acres)
+  | 'large' // 10 hectares and above (~25+ acres)
+  | 'landless'; // Agricultural laborer / Tenant cultivator
+
+export type TenureType = 'owned' | 'leased' | 'shared';
+
+export type CropCategory =
+  | 'food-grains'
+  | 'horticulture'
+  | 'plantation'
+  | 'livestock'
+  | 'other';
+
+export type ColorMode = 'field' | 'night' | 'monsoon' | 'harvest' | 'high-contrast';
+
+export type VerificationStatus = 'verified' | 'review-due' | 'missing-source';
+
+export interface AuditLogEntry {
+  id: string;
+  timestamp: string;
+  user: string;
+  action: 'SAVED_DRAFT' | 'PUBLISHED_SCHEME' | 'DELETED_SCHEME' | 'VERIFIED_SOURCE' | 'UPDATED_NEWS';
+  oldValue?: string;
+  newValue?: string;
+  details: string;
+}
 
 export interface Scheme {
   id: string;
   slug: string;
   title: string;
   department: string;
-  state: 'karnataka' | 'central';
-  badgeCategory: 'cash-benefit' | 'subsidy' | 'infrastructure' | 'identity';
+  state: string; // 'central' | 'all-india' | state name
+  badgeCategory: 'cash-benefit' | 'subsidy' | 'infrastructure' | 'identity' | 'credit' | 'input-support';
   whatItGives: string;
   whoItIsFor: string;
+  holdingCategory?: LandHoldingCategory[];
+  tenureTypeAllowed?: TenureType[];
+  cropCategoriesAllowed?: CropCategory[];
   landSizeMinAcres?: number;
   landSizeMaxAcres?: number;
-  eligibleCrops?: string[]; // e.g. ['ragi', 'millet', 'paddy', 'horticulture', 'all']
+  eligibleCrops?: string[];
   requiresLandRecord: boolean;
   requiresFarmerId: boolean;
   requiresAadhaarBankLink: boolean;
@@ -25,9 +98,13 @@ export interface Scheme {
   };
   watchFor: string;
   sourceUrl: string;
+  sourceAccessDate?: string;
   lastVerifiedOn: string;
   verifiedBy: string;
-  isHypothesis?: boolean; // When eligibility edge cases are hypothesized
+  changeSummary?: string;
+  isHypothesis?: boolean;
+  isStateSpecificPlaceholder?: boolean;
+  statePlaceholderTarget?: string;
   published: boolean;
   isMachineTranslated?: boolean;
 }
@@ -38,16 +115,19 @@ export interface NewsItem {
   summary: string;
   category: 'payment-release' | 'deadline' | 'portal-update' | 'verification';
   schemeSlug?: string;
+  state?: string;
   publishedAt: string;
   lastVerifiedOn: string;
   sourceUrl: string;
   verifiedBy: string;
+  verificationNote?: string;
 }
 
 export interface HelpOffice {
   id: string;
   district: string;
-  districtKannada?: string;
+  state: string;
+  districtLocal?: string;
   officeName: string;
   address: string;
   pincode: string;
@@ -61,7 +141,7 @@ export interface HelpOffice {
 export interface GlossaryItem {
   id: string;
   termKey: string;
-  term: string; // in current locale
+  term: string;
   englishEquivalent: string;
   simpleExplanation: string;
   whyItMatters: string;
@@ -79,13 +159,13 @@ export interface DocumentCheckItem {
 }
 
 export interface FinderCriteria {
-  landSizeAcres: number | 'landless' | 'unknown';
-  cropsGrown: string[];
-  hasLandRecordInOwnName: 'yes' | 'no' | 'joint' | 'tenancy';
+  state: StateOrUT;
+  holdingCategory: LandHoldingCategory;
+  tenureType: TenureType;
+  cropCategory: CropCategory;
   hasFarmerId: 'yes' | 'no' | 'not-sure';
+  hasLandRecordInOwnName: 'yes' | 'no' | 'joint';
   hasAadhaarBankLinked: 'yes' | 'no' | 'not-sure';
-  district: string;
-  socialCategory?: 'general' | 'sc' | 'st' | 'obc' | 'prefer-not-to-say';
 }
 
 export interface SchemeMatchResult {
@@ -94,4 +174,5 @@ export interface SchemeMatchResult {
   matchReasons: string[];
   actionRequired?: string[];
   isHypothesis: boolean;
+  stateNotice?: string;
 }

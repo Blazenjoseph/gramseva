@@ -45,13 +45,14 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        serif: ['var(--font-display, var(--font-fraunces))', 'Georgia', 'serif'],
         sans: [
           'var(--font-atkinson)',
           'var(--font-noto-kannada)',
           'var(--font-noto-hindi)',
           'var(--font-noto-tamil)',
           'var(--font-noto-malayalam)',
+          'var(--font-noto-telugu)',
           'system-ui',
           'sans-serif',
         ],

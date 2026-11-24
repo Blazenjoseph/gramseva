@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,11 +8,36 @@
   :root {
     --font-fraunces: 'Fraunces', Georgia, serif;
     --font-atkinson: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
+    --font-literata: 'Literata', Georgia, serif;
+    --font-newsreader: 'Newsreader', Georgia, serif;
     --font-noto-kannada: 'Noto Sans Kannada', 'Tunga', 'Kedage', sans-serif;
     --font-noto-hindi: 'Noto Sans Devanagari', 'Mangal', 'Utsaah', sans-serif;
     --font-noto-tamil: 'Noto Sans Tamil', 'Latha', 'Vijaya', sans-serif;
     --font-noto-malayalam: 'Noto Sans Malayalam', 'Kartika', 'AnjaliOldLipi', sans-serif;
+    --font-noto-telugu: 'Noto Sans Telugu', 'Gautami', 'Vani', sans-serif;
+    --font-display: var(--font-fraunces);
 
+    /* Mode 1: Field (Default) - Warm paper, field green, straw gold, ink */
+    --bg-paper: #F4EEE1;
+    --bg-paper-surface: #FAF7F0;
+    --bg-paper-card: #FFFFFF;
+    --bg-paper-subtle: #ECE4D0;
+    --color-field-green: #1E3B2A;
+    --color-field-hover: #14271C;
+    --color-field-light: #E8F0EB;
+    --color-straw-gold: #D8B25C;
+    --color-straw-light: #FBF6E9;
+    --color-ink-brown: #2B2523;
+    --color-ink-muted: #5D5450;
+    --color-ink-faint: #8E8580;
+    --color-border: #E0D6C3;
+    --focus-ring: #1E3B2A;
+    --card-radius: 1rem;
+  }
+
+  /* Mode 1 Explicit: Field */
+  [data-color-mode="field"] {
+    --font-display: var(--font-fraunces);
     --bg-paper: #F4EEE1;
     --bg-paper-surface: #FAF7F0;
     --bg-paper-card: #FFFFFF;
@@ -29,8 +54,10 @@
     --focus-ring: #1E3B2A;
   }
 
-  /* Dark mode */
+  /* Mode 2: Night (Existing dark mode) */
+  [data-color-mode="night"],
   .dark {
+    --font-display: var(--font-fraunces);
     --bg-paper: #181917;
     --bg-paper-surface: #222320;
     --bg-paper-card: #2B2D29;
@@ -47,7 +74,46 @@
     --focus-ring: #D8B25C;
   }
 
-  /* High contrast mode */
+  /* Mode 3: Monsoon (Mist, deep teal, muted sky, ink, Literata) */
+  [data-color-mode="monsoon"] {
+    --font-display: var(--font-literata);
+    --bg-paper: #EEF3F1;
+    --bg-paper-surface: #F5F9F8;
+    --bg-paper-card: #FFFFFF;
+    --bg-paper-subtle: #D8E5E5;
+    --color-field-green: #1F4E56;
+    --color-field-hover: #163B41;
+    --color-field-light: #DCECF0;
+    --color-straw-gold: #387D8A;
+    --color-straw-light: #E7F3F5;
+    --color-ink-brown: #17302F;
+    --color-ink-muted: #3B5756;
+    --color-ink-faint: #688281;
+    --color-border: #A9C9CF;
+    --focus-ring: #1F4E56;
+  }
+
+  /* Mode 4: Harvest (Sand, terracotta, ochre, dark brown, Newsreader) */
+  [data-color-mode="harvest"] {
+    --font-display: var(--font-newsreader);
+    --bg-paper: #F7E9CF;
+    --bg-paper-surface: #FCF4E5;
+    --bg-paper-card: #FFFDF8;
+    --bg-paper-subtle: #EED7B2;
+    --color-field-green: #9C4A2F;
+    --color-field-hover: #7E3620;
+    --color-field-light: #FBE6DD;
+    --color-straw-gold: #C98A2B;
+    --color-straw-light: #FDF1DC;
+    --color-ink-brown: #3A2418;
+    --color-ink-muted: #624332;
+    --color-ink-faint: #8E6B57;
+    --color-border: #DEC296;
+    --focus-ring: #9C4A2F;
+  }
+
+  /* Mode 5: High contrast */
+  [data-color-mode="high-contrast"],
   .high-contrast {
     --bg-paper: #FFFFFF !important;
     --bg-paper-surface: #FFFFFF !important;
@@ -55,15 +121,19 @@
     --bg-paper-subtle: #EEEEEE !important;
     --color-field-green: #000000 !important;
     --color-field-hover: #000000 !important;
+    --color-field-light: #FFFFFF !important;
     --color-straw-gold: #000000 !important;
+    --color-straw-light: #FFFFFF !important;
     --color-ink-brown: #000000 !important;
     --color-ink-muted: #000000 !important;
     --color-ink-faint: #222222 !important;
     --color-border: #000000 !important;
     --focus-ring: #000000 !important;
+    --font-display: var(--font-atkinson) !important;
   }
 
-  .dark.high-contrast {
+  .dark.high-contrast,
+  .high-contrast.dark {
     --bg-paper: #000000 !important;
     --bg-paper-surface: #000000 !important;
     --bg-paper-card: #111111 !important;
@@ -102,6 +172,262 @@
     outline: 3px solid var(--focus-ring);
     outline-offset: 3px;
   }
+}
+
+/* ==========================================================================
+   COLOR MODE SPECIFIC DESIGN OVERRIDES
+   ========================================================================== */
+
+/* Monsoon Mode: Cards have a slightly larger corner radius than Field */
+[data-color-mode="monsoon"] .rounded-xl {
+  border-radius: 1.35rem !important;
+}
+[data-color-mode="monsoon"] .rounded-2xl {
+  border-radius: 1.75rem !important;
+}
+[data-color-mode="monsoon"] article,
+[data-color-mode="monsoon"] .shadow-card,
+[data-color-mode="monsoon"] [class*="shadow-card"] {
+  border-radius: 1.5rem !important;
+  border-color: #A9C9CF !important;
+}
+
+/* Harvest Mode: Cards have a thicker top border in the accent colour (#C98A2B) */
+[data-color-mode="harvest"] article,
+[data-color-mode="harvest"] .shadow-card,
+[data-color-mode="harvest"] [class*="shadow-card"],
+[data-color-mode="harvest"] [class*="rounded-2xl"].border {
+  border-top: 4px solid #C98A2B !important;
+}
+[data-color-mode="harvest"] .bg-field-800 {
+  background-color: #9C4A2F !important;
+}
+[data-color-mode="harvest"] .bg-field-900 {
+  background-color: #7E3620 !important;
+}
+[data-color-mode="harvest"] .text-field-800,
+[data-color-mode="harvest"] .text-field-900 {
+  color: #9C4A2F !important;
+}
+
+/* Monsoon Mode Color Overrides for buttons and primary accents */
+[data-color-mode="monsoon"] .bg-field-800 {
+  background-color: #1F4E56 !important;
+}
+[data-color-mode="monsoon"] .bg-field-900 {
+  background-color: #163B41 !important;
+}
+[data-color-mode="monsoon"] .text-field-800,
+[data-color-mode="monsoon"] .text-field-900 {
+  color: #1F4E56 !important;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE HIGH CONTRAST OVERRIDES (WCAG AAA)
+   ========================================================================== */
+
+/* 1. Base Canvas in High Contrast */
+.high-contrast,
+.high-contrast body {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  background-image: none !important;
+}
+
+.dark.high-contrast,
+.dark.high-contrast body,
+.high-contrast.dark,
+.high-contrast.dark body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  background-image: none !important;
+}
+
+/* 2. Containers, Cards, Sections & Headers in Light High Contrast */
+.high-contrast header,
+.high-contrast nav,
+.high-contrast main,
+.high-contrast footer,
+.high-contrast section,
+.high-contrast article,
+.high-contrast aside,
+.high-contrast [class*="bg-paper"],
+.high-contrast [class*="bg-stone"],
+.high-contrast [class*="bg-field-50"],
+.high-contrast [class*="bg-field-100"],
+.high-contrast [class*="bg-straw-50"],
+.high-contrast [class*="bg-straw-100"],
+.high-contrast [class*="bg-amber-50"],
+.high-contrast [class*="bg-emerald-50"],
+.high-contrast [class*="bg-blue-50"],
+.high-contrast [class*="bg-gradient"] {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+}
+
+/* Containers in Dark High Contrast */
+.dark.high-contrast header,
+.dark.high-contrast nav,
+.dark.high-contrast main,
+.dark.high-contrast footer,
+.dark.high-contrast section,
+.dark.high-contrast article,
+.dark.high-contrast aside,
+.dark.high-contrast [class*="bg-paper"],
+.dark.high-contrast [class*="bg-stone"],
+.dark.high-contrast [class*="bg-field"],
+.dark.high-contrast [class*="bg-straw"],
+.dark.high-contrast [class*="bg-amber"],
+.dark.high-contrast [class*="bg-emerald"],
+.dark.high-contrast [class*="bg-blue"],
+.dark.high-contrast [class*="bg-gradient"] {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  background-image: none !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+/* 3. Typography in High Contrast */
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast h4,
+.high-contrast h5,
+.high-contrast h6,
+.high-contrast p,
+.high-contrast span,
+.high-contrast label,
+.high-contrast li,
+.high-contrast td,
+.high-contrast th,
+.high-contrast strong,
+.high-contrast b,
+.high-contrast [class*="text-ink"],
+.high-contrast [class*="text-field"],
+.high-contrast [class*="text-straw"],
+.high-contrast [class*="text-stone"],
+.high-contrast [class*="text-amber"],
+.high-contrast [class*="text-emerald"] {
+  color: #000000 !important;
+}
+
+.dark.high-contrast h1,
+.dark.high-contrast h2,
+.dark.high-contrast h3,
+.dark.high-contrast h4,
+.dark.high-contrast h5,
+.dark.high-contrast h6,
+.dark.high-contrast p,
+.dark.high-contrast span,
+.dark.high-contrast label,
+.dark.high-contrast li,
+.dark.high-contrast td,
+.dark.high-contrast th,
+.dark.high-contrast strong,
+.dark.high-contrast b,
+.dark.high-contrast [class*="text-ink"],
+.dark.high-contrast [class*="text-field"],
+.dark.high-contrast [class*="text-paper"],
+.dark.high-contrast [class*="text-stone"] {
+  color: #FFFFFF !important;
+}
+
+/* 4. Borders & Dividers */
+.high-contrast [class*="border"] {
+  border-color: #000000 !important;
+  border-width: 1.5px !important;
+}
+
+.dark.high-contrast [class*="border"] {
+  border-color: #FFFFFF !important;
+  border-width: 1.5px !important;
+}
+
+/* 5. Primary Buttons & Call-to-Actions */
+.high-contrast button[class*="bg-field"],
+.high-contrast button[class*="bg-straw"],
+.high-contrast a[class*="bg-field"],
+.high-contrast a[class*="bg-straw"] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #000000 !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast button[class*="bg-paper"],
+.high-contrast a[class*="bg-paper"] {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  font-weight: 700 !important;
+}
+
+.dark.high-contrast button[class*="bg-field"],
+.dark.high-contrast button[class*="bg-straw"],
+.dark.high-contrast a[class*="bg-field"],
+.dark.high-contrast a[class*="bg-straw"] {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border: 2px solid #FFFF00 !important;
+  font-weight: 700 !important;
+}
+
+.dark.high-contrast button[class*="bg-paper"],
+.dark.high-contrast a[class*="bg-paper"],
+.dark.high-contrast button[class*="bg-stone"],
+.dark.high-contrast a[class*="bg-stone"] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+/* 6. Form Inputs, Selects & Textareas */
+.high-contrast input,
+.high-contrast select,
+.high-contrast textarea {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+.dark.high-contrast input,
+.dark.high-contrast select,
+.dark.high-contrast textarea {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+/* 7. Badges, Chips, Pills & Tags */
+.high-contrast [class*="rounded-full"] {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  font-weight: 700 !important;
+}
+
+.dark.high-contrast [class*="rounded-full"] {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border: 2px solid #FFFF00 !important;
+  font-weight: 700 !important;
+}
+
+/* 8. Links in High Contrast */
+.high-contrast a:hover {
+  text-decoration: underline !important;
+}
+
+/* 9. Icons & SVGs */
+.high-contrast svg {
+  stroke: currentColor !important;
 }
 
 /* Reduced motion preference */

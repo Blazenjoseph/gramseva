@@ -10,10 +10,8 @@ import {
   Clock,
   MapPin,
   Search,
-  Filter,
   Info,
-  CheckCircle2,
-  ExternalLink,
+  Globe2,
 } from 'lucide-react';
 
 interface OfficeFinderProps {
@@ -33,11 +31,12 @@ export function OfficeFinder({ initialOffices, locale }: OfficeFinderProps) {
       }
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
+        const matchState = office.state?.toLowerCase().includes(q);
         const matchDistrict = office.district.toLowerCase().includes(q);
         const matchOffice = office.officeName.toLowerCase().includes(q);
         const matchAddress = office.address.toLowerCase().includes(q);
         const matchServices = office.servicesProvided.some((s) => s.toLowerCase().includes(q));
-        return matchDistrict || matchOffice || matchAddress || matchServices;
+        return matchState || matchDistrict || matchOffice || matchAddress || matchServices;
       }
       return true;
     });
@@ -98,7 +97,7 @@ export function OfficeFinder({ initialOffices, locale }: OfficeFinderProps) {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-field-50 dark:bg-stone-800 text-field-900 dark:text-straw-400 border border-field-200 dark:border-stone-700">
-                  {office.district} {office.districtKannada ? `(${office.districtKannada})` : ''}
+                  {office.state || 'Karnataka'} · {office.district} {office.districtLocal ? `(${office.districtLocal})` : ''}
                 </span>
                 <span className="text-xs text-ink-muted dark:text-stone-400 font-mono">
                   PIN: {office.pincode}
